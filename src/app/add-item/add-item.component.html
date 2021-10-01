@@ -1,0 +1,63 @@
+<app-header></app-header>
+ 
+ <div class="container">
+    <div class="row">
+        <div class="col-xs-8">
+            <input type="text" class="form-control" name="task" placeholder="Task" #taskInput>
+        </div>
+ 
+        <div class="col-xs-4">
+            <button class="btn btn-info" (click)="addTask(taskInput)">Add</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>To-Do list</th>
+                    </tr>
+                </thead>
+
+
+                <tbody>
+                    <tr *ngFor="let task of items; let idx = index">
+                        <td *ngIf="task.isFalse; else elseTd">
+                            <s>{{ idx + 1 }}. {{task.item_name}}</s>
+                        </td>
+                        <ng-template #elseTd>
+                            <td>{{ idx + 1 }}. {{task.item_name}}</td>
+                        </ng-template>
+ 
+                        <td>
+                            <button class="btn btn-primary btn-xs" (click)="editTask(idx)"> Edit </button>
+                        </td>
+ 
+                        <td>
+                            <button class="btn btn-warning btn-xs" (click)="cancelTask(idx)"> Complete </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger btn-xs" (click)="deleteTask(idx)"> Delete </button>
+                        </td>
+
+                        
+                    </tr>
+ 
+                </tbody>
+
+                <br><br>
+
+                <tfoot>
+                    <tr>
+                            <button class="btn btn-danger" (click)="clearToDo()">Clear</button>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+ </div>
+
+
+
+ 
